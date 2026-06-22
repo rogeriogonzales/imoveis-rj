@@ -4,7 +4,9 @@
 <style>
 :root{--bg:#0f1115;--card:#191c23;--mut:#8a93a6;--line:#262b36;--pos:#34d399;--neg:#f87171;--acc:#60a5fa}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:#e6e9ef;font:15px/1.5 -apple-system,Segoe UI,Roboto,sans-serif}
-header{padding:24px 22px 12px}h1{margin:0 0 6px;font-size:24px}.lead{color:var(--mut);margin:0;font-size:13px}
+header{padding:24px 22px 12px;position:relative}h1{margin:0 0 6px;font-size:24px}.lead{color:var(--mut);margin:0;font-size:13px}
+.metlink{position:absolute;top:22px;right:22px;background:#1a2230;border:1px solid var(--acc);color:var(--acc);padding:8px 13px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:600}
+.metlink:hover{background:#21304a}@media(max-width:560px){.metlink{position:static;display:inline-block;margin-top:10px}}
 .kpis{display:flex;gap:22px;margin-top:12px;flex-wrap:wrap}.kpi b{font-size:20px;color:var(--acc)}.kpi span{color:var(--mut);font-size:12px;display:block}
 .base{margin-top:12px;border-collapse:collapse}.base td{padding:2px 14px 2px 0;color:var(--mut);font-size:12px}
 .filters{position:sticky;top:0;z-index:10;background:#0f1115ee;backdrop-filter:blur(6px);border-bottom:1px solid var(--line);
@@ -32,12 +34,13 @@ table.bank{width:100%;border-collapse:collapse;font-size:13px}.bank td,.bank th{
 details>summary{cursor:pointer;color:var(--acc);font-weight:600;margin-bottom:10px}
 </style></head><body>
 <header>
+  <a class="metlink" href="metodologia.html" target="_blank">📋 Como isto é feito</a>
   <h1>Imóveis RJ — oportunidades</h1>
   <p class="lead">Atualizado 2026-06-22 · JB · Gávea · Lagoa · Humaitá · Leblon · cruzamento com venda real ITBI</p>
   <div class="kpis">
     <div class="kpi"><b>194</b><span>imóveis ≥94 m²</span></div>
     <div class="kpi"><b id="visc">194</b><span>visíveis no filtro</span></div>
-    <div class="kpi"><b>247</b><span>com link testado</span></div>
+    <div class="kpi"><b>243</b><span>com link testado</span></div>
     <div class="kpi"><b>212</b><span>com foto</span></div>
   </div>
   <table class="base"><tr><td><b>Baseline ITBI (R$/m² real)</b></td></tr><tr><td>Leblon</td><td>R$ 18.928/m²</td></tr><tr><td>Lagoa</td><td>R$ 16.043/m²</td></tr><tr><td>Gávea</td><td>R$ 13.785/m²</td></tr><tr><td>Jardim Botânico</td><td>R$ 13.173/m²</td></tr><tr><td>Humaitá</td><td>R$ 10.629/m²</td></tr></table>
@@ -1497,7 +1500,7 @@ Tamanho do imóvel <span class="chip churr">🔥 churrasqueira</span></div>
     </article>
 
     <article class="card" data-churr="nao" data-price="2000000" data-bairro="Gávea">
-      <div class="media"><a href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-120-m/AP3869-LARU" target="_blank" rel="noopener"><img loading="lazy" src="https://managing-images.kenlo.io/unsafe/600x400/filters:quality(50)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu2Fn+s5eyTogy5E2Ab2mgnGmhcDMw5KDnhW5+KuKhK3qjs-mQvnnyKsEj7KvC1yVnK1XQu42H0NYRbFBFSHBdqebPiNgjT6w+B3OauRGX3YJ0SsrvDRn7nKJBd2QxnwA9ROHAcvS93WBV4HvK04EHrMNAdIz7EIJ8RC9W0J8p0oF7J6yoS7TO7S-K5+hxzlXFx5k9oa+Squ619jCLJU4Vr0lNm4L5VMZWe0S2-TJT-8+5wEDqv3JFhXchgzWgPAoc9j0Qd9MmqcGiFnAHrJJ7R24z9GS1vCkO0WGZQdppOycq6G0bfv2GqvzOTyNlJAV+diKf54VNYShTyoHQnlkYmhR6FK4+PTZ4hiwMic=.jpg" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement(&#x27;div&#x27;),{className:&#x27;ph&#x27;,textContent:&#x27;sem foto — ver anúncio&#x27;}))"></a></div>
+      <div class="media"><img loading="lazy" src="https://managing-images.kenlo.io/unsafe/600x400/filters:quality(50)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu2Fn+s5eyTogy5E2Ab2mgnGmhcDMw5KDnhW5+KuKhK3qjs-mQvnnyKsEj7KvC1yVnK1XQu42H0NYRbFBFSHBdqebPiNgjT6w+B3OauRGX3YJ0SsrvDRn7nKJBd2QxnwA9ROHAcvS93WBV4HvK04EHrMNAdIz7EIJ8RC9W0J8p0oF7J6yoS7TO7S-K5+hxzlXFx5k9oa+Squ619jCLJU4Vr0lNm4L5VMZWe0S2-TJT-8+5wEDqv3JFhXchgzWgPAoc9j0Qd9MmqcGiFnAHrJJ7R24z9GS1vCkO0WGZQdppOycq6G0bfv2GqvzOTyNlJAV+diKf54VNYShTyoHQnlkYmhR6FK4+PTZ4hiwMic=.jpg" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement(&#x27;div&#x27;),{className:&#x27;ph&#x27;,textContent:&#x27;sem foto — ver anúncio&#x27;}))"></div>
       <div class="body">
         <div class="row1"><span class="score">29.1</span>
           <span class="price">R$ 2.000.000</span></div>
@@ -1505,8 +1508,8 @@ Tamanho do imóvel <span class="chip churr">🔥 churrasqueira</span></div>
         <div class="loc">📍 Gávea </div>
         <div class="itbi">Venda real ITBI (bairro: Gávea): <b>R$ 13.785/m²</b>
           · anúncio <b>R$ 16.667/m²</b> · <span class="neg">-21% vs real</span> · cond. R$ 2.213/mês</div>
-        <div class="inter">Anunciantes: <a href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-120-m/AP3869-LARU" target="_blank" rel="noopener">lart · R$ 2.000.000</a></div>
-        <a class="btn" href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-120-m/AP3869-LARU" target="_blank" rel="noopener">Ver anúncio ↗</a>
+        <div class="inter">Anunciantes: <span class="dead">sem link válido</span></div>
+        <span class="btn off">link indisponível</span>
       </div>
     </article>
 
@@ -1567,7 +1570,7 @@ Tamanho do imóvel <span class="chip churr">🔥 churrasqueira</span></div>
     </article>
 
     <article class="card" data-churr="sim" data-price="2400000" data-bairro="Gávea">
-      <div class="media"><a href="https://lachter.com.br/imovel/apartamento-gavea-rio-de-janeiro-rj-3-quartos-142m2-KACMRV" target="_blank" rel="noopener"><img loading="lazy" src="https://cdn.vistahost.com.br/lachterp/vista.imobi/fotos/1509/i72Uv6z16B1vq_15096712d216f0e89.jpg" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement(&#x27;div&#x27;),{className:&#x27;ph&#x27;,textContent:&#x27;sem foto — ver anúncio&#x27;}))"></a></div>
+      <div class="media"><a href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-142-m/AP3105-LARU" target="_blank" rel="noopener"><img loading="lazy" src="https://managing-images.kenlo.io/unsafe/600x400/filters:quality(50)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtu3BVyMJN7UwSs49Hfpbmvyee1IGZ7sm0rGuEwreH473x3ODZTvv05ro98KzEPXWcv6I-X90kYn17W+JaFUXQQIXaHylw-z6e+n-yU6JgdHpcxDlrok99nELgVMeI1EQS1QejN+37qiucRr3KDQNVOLMNAdIz7EIJ8RC9W0J8p0oF7J6yoS7TO7S-K5+hxzlXFx5k9oa+Squ619jCLJU4Vr0lNm4L5VMZWe0S2-TJT-8+5wEDqv3JFhXchgzWgPAoc9j0Qd9MmqcGiFnAHrJJ7R24z9GS1vCkO0WGZQdppOycq6G0bfv2GqvzOTyNlJAV+diKf54VNYShTyoHQnlkYmhR6FK4+PTZ4hiwMic=.jpg" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement(&#x27;div&#x27;),{className:&#x27;ph&#x27;,textContent:&#x27;sem foto — ver anúncio&#x27;}))"></a></div>
       <div class="body">
         <div class="row1"><span class="score">27.4</span>
           <span class="price">R$ 2.400.000</span></div>
@@ -1575,8 +1578,8 @@ Tamanho do imóvel <span class="chip churr">🔥 churrasqueira</span></div>
         <div class="loc">📍 Gávea <span class="chip churr">🔥 churrasqueira</span></div>
         <div class="itbi">Venda real ITBI (bairro: Gávea): <b>R$ 13.785/m²</b>
           · anúncio <b>R$ 16.901/m²</b> · <span class="neg">-23% vs real</span> · cond. R$ 2.350/mês</div>
-        <div class="inter">Anunciantes: <a href="https://lachter.com.br/imovel/apartamento-gavea-rio-de-janeiro-rj-3-quartos-142m2-KACMRV" target="_blank" rel="noopener">lachter · R$ 2.500.000</a></div>
-        <a class="btn" href="https://lachter.com.br/imovel/apartamento-gavea-rio-de-janeiro-rj-3-quartos-142m2-KACMRV" target="_blank" rel="noopener">Ver anúncio ↗</a>
+        <div class="inter">Anunciantes: <a href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-142-m/AP3105-LARU" target="_blank" rel="noopener">lart · R$ 2.400.000</a> · <a href="https://lachter.com.br/imovel/apartamento-gavea-rio-de-janeiro-rj-3-quartos-142m2-KACMRV" target="_blank" rel="noopener">lachter · R$ 2.500.000</a></div>
+        <a class="btn" href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-142-m/AP3105-LARU" target="_blank" rel="noopener">Ver anúncio ↗</a>
       </div>
     </article>
 
@@ -1976,7 +1979,7 @@ Tamanho do imóvel
     </article>
 
     <article class="card" data-churr="nao" data-price="2550000" data-bairro="Gávea">
-      <div class="media"><a href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-136-m/AP3888-LARU" target="_blank" rel="noopener"><img loading="lazy" src="https://managing-images.kenlo.io/unsafe/600x400/filters:quality(50)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtux9---9Azxcigu8zUpKhmCW5x4Gy69Gis36M-K6JmpXR98fzddnl1dsbgaGrK3Wcr4BJHdo5H1FpP7BwfUfFfY28HkRooRyT-HmTcpkWXk9owx4SrhYI-V3lRaON2U439QL0V8PHqCG7HareDhl1MLMNAdIz7EIJ8RC9W0J8p0oF7J6yoS7TO7S-K5+hxzlXFx5k9oa+Squ619jCLJU4Vr0lNm4L5VMZWe0S2-TJT-8+5wEDqv3JFhXchgzWgPAoc9j0Qd9MmqcGiFnAHrJJ7R24z9GS1vCkO0WGZQdppOycq6G0bfv2GqvzOTyNlJAV+diKf54VNYShTyoHQnlkYmhR6FK4+PTZ4hiwMic=.jpg" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement(&#x27;div&#x27;),{className:&#x27;ph&#x27;,textContent:&#x27;sem foto — ver anúncio&#x27;}))"></a></div>
+      <div class="media"><img loading="lazy" src="https://managing-images.kenlo.io/unsafe/600x400/filters:quality(50)/storage.googleapis.com/kenlo-sites-images/VWRCUkQ2Tnp3d1BJRDBJVe1szkhnWr9UfpZS9ftWwjXgr7v5Znen3XVcMHllDVRJJeIbi3YwVYEtux9---9Azxcigu8zUpKhmCW5x4Gy69Gis36M-K6JmpXR98fzddnl1dsbgaGrK3Wcr4BJHdo5H1FpP7BwfUfFfY28HkRooRyT-HmTcpkWXk9owx4SrhYI-V3lRaON2U439QL0V8PHqCG7HareDhl1MLMNAdIz7EIJ8RC9W0J8p0oF7J6yoS7TO7S-K5+hxzlXFx5k9oa+Squ619jCLJU4Vr0lNm4L5VMZWe0S2-TJT-8+5wEDqv3JFhXchgzWgPAoc9j0Qd9MmqcGiFnAHrJJ7R24z9GS1vCkO0WGZQdppOycq6G0bfv2GqvzOTyNlJAV+diKf54VNYShTyoHQnlkYmhR6FK4+PTZ4hiwMic=.jpg" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement(&#x27;div&#x27;),{className:&#x27;ph&#x27;,textContent:&#x27;sem foto — ver anúncio&#x27;}))"></div>
       <div class="body">
         <div class="row1"><span class="score">14.0</span>
           <span class="price">R$ 2.550.000</span></div>
@@ -1984,8 +1987,8 @@ Tamanho do imóvel
         <div class="loc">📍 Gávea </div>
         <div class="itbi">Venda real ITBI (bairro: Gávea): <b>R$ 13.785/m²</b>
           · anúncio <b>R$ 18.750/m²</b> · <span class="neg">-36% vs real</span> · cond. R$ 1.400/mês</div>
-        <div class="inter">Anunciantes: <a href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-136-m/AP3888-LARU" target="_blank" rel="noopener">lart · R$ 2.550.000</a></div>
-        <a class="btn" href="https://www.lartcorretores.com.br/imovel/apartamento-rio-de-janeiro-2-quartos-136-m/AP3888-LARU" target="_blank" rel="noopener">Ver anúncio ↗</a>
+        <div class="inter">Anunciantes: <span class="dead">sem link válido</span></div>
+        <span class="btn off">link indisponível</span>
       </div>
     </article>
 
