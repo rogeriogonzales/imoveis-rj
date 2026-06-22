@@ -1,0 +1,123 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Como funciona — Imóveis RJ</title>
+<style>
+:root{--bg:#0f1115;--card:#191c23;--mut:#8a93a6;--line:#262b36;--pos:#34d399;--acc:#60a5fa;--warn:#f4a460}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#e6e9ef;font:16px/1.65 -apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+header{padding:54px 0 30px;border-bottom:1px solid var(--line)}
+h1{font-size:30px;margin:0 0 10px;letter-spacing:-.02em}
+.sub{color:var(--mut);font-size:17px;margin:0;max-width:680px}
+.tag{display:inline-block;background:#12151c;border:1px solid var(--line);color:var(--mut);font-size:12px;padding:3px 10px;border-radius:20px;margin-bottom:18px}
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+h2{font-size:22px;margin:0 0 14px}h3{font-size:16px;margin:0 0 4px}
+p{color:#d6dbe4;margin:0 0 12px}.mut{color:var(--mut)}
+.lead{font-size:18px;color:#eef1f6}
+.callout{background:linear-gradient(180deg,#16261f,#12151c);border:1px solid #234436;border-radius:12px;padding:18px 20px;margin:6px 0}
+.callout b{color:var(--pos)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid2{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.box .k{color:var(--acc);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.pipe{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin:8px 0}
+.step{flex:1;min-width:120px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;position:relative}
+.step .n{color:var(--acc);font-weight:700;font-size:12px}.step .t{font-weight:700;font-size:14px;margin:2px 0}.step .d{color:var(--mut);font-size:12px}
+.kpis{display:flex;gap:26px;flex-wrap:wrap;margin-top:10px}
+.kpi b{font-size:26px;color:var(--acc);display:block}.kpi span{color:var(--mut);font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
+td,th{text-align:left;padding:6px 12px 6px 0;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600}
+td.r{text-align:right;color:var(--pos);font-weight:700}
+ul{margin:6px 0 12px;padding-left:20px}li{margin:5px 0;color:#d6dbe4}
+.foot{padding:30px 0 60px;color:var(--mut);font-size:14px}
+a{color:var(--acc)}
+.badge{font-size:11px;color:var(--warn);border:1px solid #3a2c18;background:#1c160e;padding:1px 7px;border-radius:6px}
+</style></head><body>
+<div class="wrap">
+
+<header>
+  <div class="tag">Documento técnico · como o sistema foi construído</div>
+  <h1>Imóveis RJ — o que está por trás do site</h1>
+  <p class="sub">Um sistema que cruza o <b>preço de anúncio</b> com o <b>preço de venda real</b> (dado público de ITBI da Prefeitura) para encontrar oportunidades em Jardim Botânico, Gávea, Lagoa, Humaitá e Leblon — não só "olhar o Zap".</p>
+</header>
+
+<section>
+  <h2>A ideia central</h2>
+  <p class="lead">Todo portal mostra o preço que o <em>vendedor pede</em>. Quase ninguém olha o preço pelo qual imóveis parecidos <em>foram de fato vendidos</em> na mesma rua.</p>
+  <p>A Prefeitura do Rio publica, como dado aberto, o ITBI — o imposto pago em cada transação. Dali se extrai a <b>mediana de R$/m² realmente transacionado por trecho de logradouro</b>. O sistema pega cada anúncio e pergunta: <i>"este preço está acima ou abaixo do que de fato se vende nesta rua/bairro?"</i></p>
+  <div class="callout">
+    <b>É essa a diferença.</b> Um apartamento anunciado a R$ 9.600/m² numa rua onde o ITBI mostra venda real a R$ 13.500/m² é um sinal objetivo de oportunidade — medido contra transação, não contra outro anúncio.
+  </div>
+</section>
+
+<section>
+  <h2>O caminho do dado (pipeline)</h2>
+  <div class="pipe">
+    <div class="step"><div class="n">1</div><div class="t">Captura</div><div class="d">Portais + imobiliárias boutique + lançamentos</div></div>
+    <div class="step"><div class="n">2</div><div class="t">Normalização</div><div class="d">Schema único · snapshot diário · histórico de preço</div></div>
+    <div class="step"><div class="n">3</div><div class="t">Dedup</div><div class="d">Mesmo imóvel em vários portais → 1 registro</div></div>
+    <div class="step"><div class="n">4</div><div class="t">ITBI</div><div class="d">Cruza com venda real por logradouro/bairro</div></div>
+    <div class="step"><div class="n">5</div><div class="t">Score</div><div class="d">Desconto vs real + filtro de sanidade</div></div>
+    <div class="step"><div class="n">6</div><div class="t">Site</div><div class="d">Cards + filtros + fichas</div></div>
+  </div>
+  <p class="mut">Cada etapa roda sozinha e pode ser refeita todo dia — o histórico diário é o que liga "tempo no mercado" e "queda de preço".</p>
+</section>
+
+<section>
+  <h2>De onde vêm os imóveis</h2>
+  <div class="grid2">
+    <div class="box"><div class="k">Portais & redes grandes</div><p class="mut" style="margin:6px 0 0">Lopes e Zap Imóveis — volume. O Zap exige <b>proxy residencial</b> para passar pelo Cloudflare; rodamos isso na nuvem (Apify).</p></div>
+    <div class="box"><div class="k">Imobiliárias boutique</div><p class="mut" style="margin:6px 0 0">Lart, Lachter, Leisgold, Rio Casa Nova, DNA e outras — estoque local e exclusivo que muitas vezes <b>nem chega aos portais</b>. Mais de 50 mapeadas.</p></div>
+    <div class="box"><div class="k">Lançamentos</div><p class="mut" style="margin:6px 0 0">Incorporadoras e agregadores de lançamento, para pegar imóvel na planta <b>antes</b> de virar anúncio de revenda.</p></div>
+    <div class="box"><div class="k">ITBI — Prefeitura</div><p class="mut" style="margin:6px 0 0">Dado aberto de transações reais. A espinha dorsal: <b>137 logradouros</b> indexados com mediana de R$/m² vendido (2021+).</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>As três técnicas que fazem a diferença</h2>
+  <h3>1. Cruzamento por endereço, não só bairro</h3>
+  <p>Quando a rua do anúncio é conhecida, o comparável é a <b>venda real daquela rua</b> (ex.: Rua Lopes Quintas, 129 transações), não a média do bairro. Mais fino, mais justo.</p>
+  <h3>2. Deduplicação cross-portal</h3>
+  <p>No mercado brasileiro o mesmo imóvel é anunciado por 3 a 10 imobiliárias. O sistema reconhece pelo conteúdo (rua + área + preço) e funde tudo num <b>registro único com a lista de intermediários</b> — você vê o imóvel, não dez cópias dele.</p>
+  <h3>3. Filtro de sanidade</h3>
+  <p>"Barato demais" geralmente é erro de dado (vaga vendida como apartamento, terreno, venda fracionada). Esses são <b>separados</b> num grupo "verificar", em vez de aparecerem no topo como falsa barganha. <span class="badge">honestidade > número bonito</span></p>
+</section>
+
+<section>
+  <h2>Os números</h2>
+  <div class="kpis">
+    <div class="kpi"><b>253</b><span>imóveis no banco (deduplicados)</span></div>
+    <div class="kpi"><b>137</b><span>logradouros ITBI indexados</span></div>
+    <div class="kpi"><b>50+</b><span>imobiliárias + portais mapeados</span></div>
+    <div class="kpi"><b>5</b><span>bairros-alvo</span></div>
+  </div>
+  <h3 style="margin-top:22px">Venda real por bairro (ITBI, 2021+)</h3>
+  <table>
+    <tr><th>Bairro</th><th>R$/m² realmente transacionado</th></tr>
+    <tr><td>Leblon</td><td class="r">18.928</td></tr>
+    <tr><td>Lagoa</td><td class="r">16.043</td></tr>
+    <tr><td>Gávea</td><td class="r">13.785</td></tr>
+    <tr><td>Jardim Botânico</td><td class="r">13.173</td></tr>
+    <tr><td>Humaitá</td><td class="r">10.629</td></tr>
+  </table>
+  <p class="mut" style="margin-top:8px">Esses valores são a régua. Cada anúncio é medido contra eles (ou contra a mediana da própria rua, quando disponível).</p>
+</section>
+
+<section>
+  <h2>Para quem é corretor</h2>
+  <p>O que esse motor destrava, na prática:</p>
+  <ul>
+    <li><b>Avaliação ancorada em transação:</b> argumento de preço baseado no que vendeu de verdade na rua, não em "achismo de portal".</li>
+    <li><b>Garimpo de subavaliados:</b> ranking objetivo de quanto cada anúncio está abaixo da venda real.</li>
+    <li><b>Estoque exclusivo + lançamentos:</b> visão além dos portais, incluindo boutiques e imóveis na planta.</li>
+    <li><b>Sem ruído de duplicata:</b> um imóvel é um imóvel, com todos os anunciantes listados.</li>
+    <li><b>Acompanhamento no tempo:</b> quem caiu de preço e há quanto tempo está no mercado = poder de negociação.</li>
+  </ul>
+  <div class="callout" style="border-color:#234436"><b>Em uma frase:</b> é a diferença entre "tem isso à venda" e "isto está R$ X abaixo do que de fato se vende aqui — e aqui está a prova".</div>
+</section>
+
+<div class="foot">
+  <p>Construído como ferramenta pessoal de compra; a metodologia vale para qualquer mercado com dado público de transação.</p>
+  <p>↩ <a href="./">Voltar para a lista de imóveis</a></p>
+</div>
+
+</div></body></html>
